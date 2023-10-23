@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="update-product-modal" class="modal fade" th:id="${'update' + product.id}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/admin/updateProduct}" method="post" enctype="multipart/form-data">
+                    <input th:name="id" th:value="${product.id}" type="text" class="form-control visually-hidden" required>
+                    <div class="mb-3">
+                        <label class="col-form-label">Name: </label>
+                        <input th:name="name" th:value="${product.name}" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Type:</label>
+                        <select th:name="type" required class="form-select">
+                            <option th:selected="${product.type} == 'fruit'" value="fruit">Fruit</option>
+                            <option th:selected="${product.type} == 'vegetable'" value="vegetable">Vegetable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Price:</label>
+                        <input th:value="${product.price}" th:name="price" type="text" class="form-control priceInput" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="formFile" class="form-label">Upload image</label>
+                        <input th:value="${product.img}" th:name="img" accept="image/*" class="form-control" type="file" id="formFile">
+                    </div>
+                    <button type="submit" class="btn form-btn">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

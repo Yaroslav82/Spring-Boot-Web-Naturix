@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<section th:fragment="shop" class="shop-wrap sec-space-bottom">
+
+    <div class="modal fade" id="buyModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New order</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="col-form-label">Your email:</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label">Delivery address:</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label">Order:</label>
+                            <textarea class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn form-btn">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="divider-full-1"></div>
+
+        <div class="row">
+
+            <div th:each="product:${products}" class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-box">
+                    <div class="product-media">
+                        <img class="prod-img" alt="" th:src="@{${product.img}}">
+                        <img class="shape" alt="" th:src="@{/images/shap-small.png}">
+                        <a class="product-add" href="#">
+                            <i style="font-size: 2rem;" class="bi bi-cart-plus"></i>
+                        </a>
+                    </div>
+                    <div class="product-caption">
+                        <h3 class="product-title">
+                            <a href="#"> <span class="light-font"> organic </span>  <strong th:text="${product.name}"></strong></a>
+                        </h3>
+                        <div class="price">
+                            <strong th:text="${'$' + product.price}" class="clr-txt"></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

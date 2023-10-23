@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<section th:fragment="admin-orders" class="shop-wrap sec-space-bottom">
+
+    <div class="container">
+
+        <div class="text-center">
+            <h2 class="text-center pt-5">Orders</h2>
+        </div>
+
+        <div class="divider-full-1"></div>
+
+        <table class="product-table">
+            <thead>
+            <tr>
+                <th width="5%"></th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Order</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="order:${orders}">
+                <td>
+                    <div class="d-flex">
+                        <form class="m-2" th:action="@{/admin/changeOrderStatus}" method="post">
+                            <input required class="visually-hidden" th:name="id" type="number" th:value="${order.id}">
+                            <button class="approve clr-txt" type="submit"><i class="bi bi-check2"></i></button>
+                        </form>
+                        <form class="m-2" th:action="@{/admin/deleteOrder}" method="post">
+                            <input required class="visually-hidden" th:name="id" type="number" th:value="${order.id}">
+                            <button class="remove clr-txt" type="submit"><i class="bi bi-x-lg"></i></button>
+                        </form>
+                    </div>
+                </td>
+                <td th:text="${order.email}">
+
+                </td>
+                <td th:text="${order.address}">
+
+                </td>
+                <td th:text="${order.orderText}">
+
+                </td>
+                <td th:text="${order.status}">
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+</body>
+</html>

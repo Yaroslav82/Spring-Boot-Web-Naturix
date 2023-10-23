@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<section th:fragment="admin-products" class="shop-wrap sec-space-bottom">
+
+    <div class="container">
+
+        <div class="text-center">
+            <h2 class="text-center pt-5">Products</h2>
+            <a class="p-1 fs-5 home-about-link form-btn" href="#" data-bs-toggle="modal" data-bs-target="#addModal">Add Product</a>
+        </div>
+
+        <div th:insert="~{fragments/add-product-modal :: add-product-modal}"></div>
+
+        <div class="divider-full-1"></div>
+
+        <div class="row">
+
+            <div th:each="product:${products}" class="col-lg-3 col-md-4 col-sm-6">
+
+                <div th:insert="~{fragments/update-product-modal :: update-product-modal}"></div>
+
+                <div class="product-box">
+                    <div class="product-media">
+                        <img class="prod-img" alt="" th:src="@{${product.img}}">
+                        <img class="shape" alt="" th:src="@{/images/shap-small.png}">
+
+                        <div class="d-flex justify-content-center">
+
+                            <div class="m-2">
+                                <button data-bs-toggle="modal" th:data-bs-target="${'#update' + product.id}">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
+
+                            <form class="m-2" th:action="@{/admin/deleteProduct}" method="post">
+                                <input hidden required th:name="id" type="number" th:value="${product.id}">
+                                <button type="submit"><i class="bi bi-trash3-fill"></i></button>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="product-caption">
+                        <h3 class="product-title">
+                            <a href="#"> <span class="light-font"> organic </span>  <strong th:text="${product.name}"></strong></a>
+                        </h3>
+                        <div class="price">
+                            <strong th:text="${'$' + product.price}" class="clr-txt"></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

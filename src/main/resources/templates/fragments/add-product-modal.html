@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="add-product-modal" class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/admin/newProduct}" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="col-form-label">Name: </label>
+                        <input th:name="name" type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Type:</label>
+                        <select th:name="type" required class="form-select">
+                            <option value="fruit">Fruit</option>
+                            <option value="vegetable">Vegetable</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Price:</label>
+                        <input th:name="price" type="text" class="form-control priceInput" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="formFile" class="form-label">Upload image</label>
+                        <input th:name="img" accept="image/*" required class="form-control" type="file" id="formFile">
+                    </div>
+                    <button type="submit" class="btn form-btn">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
